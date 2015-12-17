@@ -134,7 +134,9 @@ class Lobster {
   void disp() {
     fill(r,g,b);
     rect(posX-20, posY, posX+20, posY-20);
-  }
+    rect(posX-40,posY, posX+20, posY);
+    rect(posX-40,posY-20, posX+20, posY-20);  
+}
 }
 int bunchMany = 4;
 Lobster bunch[] = new Lobster[bunchMany];
@@ -161,8 +163,12 @@ void scene() {
 //containing all display methods
 void display() {
   fill(255);
-  triangle( width-20, (surface/2)-20, width-5, (surface/2)-10, width-5, (surface/2)-30);
-  
+  triangle( width-20, (height)- 40, width-5, (height)-20, width-5, (height)-60);
+  triangle( width-20, (height)-100, width-5, (height)-80, width-5, (height)-120);
+  triangle( width-20, (height)-160, width-5, (height)-140, width-5, (height)-180);
+  triangle( width-20, (height)-220, width-5, (height)-200, width-5, (height)-240);
+  triangle( width-20, (height)-280, width-5, (height)-260, width-5, (height)-300);
+  triangle( width-20, (height)-340, width-5, (height)-320, width-5, (height)-360);
 
   stroke(1);
   for (int i=0; i<boatsMany; i++ ) {
