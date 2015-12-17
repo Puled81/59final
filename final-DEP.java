@@ -12,6 +12,7 @@ void draw() {
   display();
   movement();
   }
+  
 void reset() {      //reset code
   float groupSpace = width/(groupMany+1);
   horizon = height/3;
@@ -162,7 +163,7 @@ void scene() {      //create the scene
 
 //containing all display methods
 void display() {     // draw triangle equal length apart
-  fill(255);
+  fill(255,0,0);
   triangle( width-20, (height)- 40, width-5, (height)-20, width-5, (height)-60);
   triangle( width-20, (height)-100, width-5, (height)-80, width-5, (height)-120);
   triangle( width-20, (height)-160, width-5, (height)-140, width-5, (height)-180);
@@ -170,6 +171,7 @@ void display() {     // draw triangle equal length apart
   triangle( width-20, (height)-280, width-5, (height)-260, width-5, (height)-300);
   triangle( width-20, (height)-340, width-5, (height)-320, width-5, (height)-360);
 
+  fill(0);
   text("Drake Puletz",20,height-20);
 
   stroke(1);
