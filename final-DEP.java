@@ -173,6 +173,11 @@ void display() {     // draw triangle equal length apart
   
     fill(0);
     text("Drake Puletz",20,height-20);
+    
+    fill(255);
+    rect(100,20,40,80);
+    fill(0);
+    text("Hi/Lo", 57,54);
 
     stroke(1);
     for (int i=0; i<boatsMany; i++ ) {
