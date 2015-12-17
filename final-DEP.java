@@ -170,6 +170,8 @@ void display() {     // draw triangle equal length apart
   triangle( width-20, (height)-280, width-5, (height)-260, width-5, (height)-300);
   triangle( width-20, (height)-340, width-5, (height)-320, width-5, (height)-360);
 
+  text("Drake Puletz",20,height-20);
+
   stroke(1);
   for (int i=0; i<boatsMany; i++ ) {
     boats[i].disp(i+1);
