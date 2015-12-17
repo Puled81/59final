@@ -1,18 +1,18 @@
 //Drake Puletz
 float surface;
 
-void setup() {
+void setup() {   //setup screen
   size(750,750);
   surface = height/3;
   rectMode(CORNERS);
   reset();
-}
+  }
 void draw() {
   scene();
   display();
   movement();
-}
-void reset() {
+  }
+void reset() {      //reset code
   float groupSpace = width/(groupMany+1);
   horizon = height/3;
   points = 0;
@@ -24,9 +24,9 @@ void reset() {
   }
   for (int i=0; i<bunchMany; i++ ) {
     bunch[i] = new Lobster(horizon, groupSpace, i);
-  }
+    }
   frameCount = 0;
-}
+  }
 
 class Boat {
   float posX, posY;
@@ -36,7 +36,7 @@ class Boat {
   float b = random(255);
   int fins=0;
 
-  //starting Boat data
+  //Boat data
   Boat(float horizon) {
     posX = random(0, width);
     posY = horizon;
@@ -46,7 +46,7 @@ class Boat {
     int(b);
   }
 
-  //displaying Boat
+  //display/draw Boat
   void disp(int i) {
     fill(r, g, b);
     rect(posX-20, posY, posX+20, posY-20);
@@ -55,16 +55,16 @@ class Boat {
   }
 
 
-  //moving Boat
-  void move() {
-    posX += DX;
-    if (posX < 0) {
-      DX = random(1.5, 4);
-      score(fins);
+  //move Boat
+ void move() {
+  posX += DX;
+  if (posX < 0) {
+  DX = random(1.5, 4);
+  score(fins);
     }
-    if (posX > width) DX = random(-1.5, -4);
+   if (posX > width) DX = random(-1.5, -4);
+    }
   }
-}
 
 class Squid {
   float legs = random(1, 30);
@@ -76,7 +76,7 @@ class Squid {
   int i;
   float horizon;
 
-  Squid(float horizon, float spacing, int i) {
+  Squid(float horizon, float spacing, int i) {  //squid data
     this.horizon = horizon;
     this.i = i;
     posX = (i+1) * spacing;
@@ -89,13 +89,13 @@ class Squid {
     int(b);
   }
 
-  void move() {
+  void move() {    //move squid
     posY += DY;
     if (posY < horizon+20)DY = random(2, 4);
     if (posY > height)DY = random(-4, -2);
   }
 
-  void disp() {
+  void disp() {      //display squid
     fill(r, g, b);
     arc(posX, posY, 40, 40, PI, TWO_PI, OPEN);
     for (int l=1; l<legs; l++) {
@@ -103,8 +103,8 @@ class Squid {
     }
     fill(0);
     text(i+1, posX, posY);
+    }
   }
-}
 class Lobster {
   float posX, posY;
   float DX;
@@ -116,52 +116,52 @@ class Lobster {
   float spacing;
   float i;
 
-  Lobster(float horizon, float spacing, int i) {
+  Lobster(float horizon, float spacing, int i) {   //lobster data
     this.horizon = horizon;
     this.i = i;
     posX = random(10,width);
     posY = random( horizon,height);
     DY = random(-4, -2);
   }
-  void move() {
-    posX += DX;
-    posY += DY;
-    if (posX < width+20)DY = random(2, 4);
-    if (posX > width-20)DY = random(-4, -2);
-    if (posY < horizon-10)DX = random(2, 4);
-    if (posY > height-20)DX = random(-2, -4);
+  void move() {   //move lobster (didnt work)
+    posX = posX + DX;
+    posY = posY + DY;
+    if (posX < width+20)  DY = random( 2,  4);
+    if (posX > width-20)  DY = random(-4, -2);
+    if (posY < horizon-10)DX = random( 2,  4);
+    if (posY > height-20) DX = random(-2, -4);
   }
-  void disp() {
+  void disp() {     //display lobster
     fill(r,g,b);
     rect(posX-20, posY, posX+20, posY-20);
     rect(posX-40,posY, posX+20, posY);
     rect(posX-40,posY-20, posX+20, posY-20);  
-}
-}
-int bunchMany = 4;
-Lobster bunch[] = new Lobster[bunchMany];
+    }
+  }
+  int bunchMany = 4;
+  Lobster bunch[] = new Lobster[bunchMany];
+  
+  int boatsMany = 3;
+  Boat boats[] = new Boat[boatsMany];
+  
+  int groupMany = 5;
+  Squid group[] = new Squid[groupMany];
+  
+  //coord for horizon for Boats
+  float horizon;
+  int points;
 
-int boatsMany = 3;
-Boat boats[] = new Boat[boatsMany];
-
-int groupMany = 5;
-Squid group[] = new Squid[groupMany];
-
-//coord for horizon for Boats
-float horizon;
-int points;
-
-void scene() {
+void scene() {      //create the scene
   noStroke();
   background(0, 137, 240);//sky
   fill(0);
   text(points, width-50, 20);
   fill(0, 70, 188);
   rect(0, horizon, width, height);//sea
-}
+  }
 
 //containing all display methods
-void display() {
+void display() {     // draw triangle equal length apart
   fill(255);
   triangle( width-20, (height)- 40, width-5, (height)-20, width-5, (height)-60);
   triangle( width-20, (height)-100, width-5, (height)-80, width-5, (height)-120);
@@ -179,23 +179,23 @@ void display() {
   }
   for (int i=0; i<bunchMany; i++) {
     bunch[i].disp();
+    }
   }
-}
 
-//containing all movement values
+//contains movement values
 void movement() {
   for (int i=0; i<boatsMany; i++ ) {
     boats[i].move();
   }
   for (int i=0; i<groupMany; i++) {
     group[i].move();
+    }
   }
-}
 
 void score(int s) {
   points+=s;
-}
+  }
 
 void mousePressed() {
   reset();
-}
+  }
